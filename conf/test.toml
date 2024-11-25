@@ -1,0 +1,21 @@
+[app]
+environ = 'test'
+
+[server]
+mysql.host = 'localhost'
+mysql.password = 'foo'
+mysql.port = 1234
+
+psql.host = 'localhost'
+psql.port = 5432
+psql.user = 'defaultapp'
+psql.password = 'example'
+psql.database = 'defaultappdb'
+
+redis.host = 'localhost'
+redis.port = 6379
+redis.password = 'my-password'
+redis.db = 0
+
+kafka.topic = 'test-topic'
+kafka.servers = ['localhost:9092', 'localhost:9093', 'localhost:9094']

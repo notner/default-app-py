@@ -1,0 +1,89 @@
+version: '3.7'
+
+services:
+  # POSTGRESQL
+  psql-database:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=defaultapp
+      - POSTGRES_DB=defaultappdb
+      - POSTGRES_PASSWORD=example
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # REDIS
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redisdata:/root/redis
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
+
+  # ZOOKEEPER/KAFKA
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: 1
+    ports:
+      - '2181:2181'
+
+  kafka-1:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - '9092:9092'
+      - '29092:29092'
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-1:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_BROKER_ID: 1
+    depends_on:
+      - zookeeper
+  kafka-2:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - '9093:9093'
+      - '29093:29093'
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-2:19093,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9093,DOCKER://host.docker.internal:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_BROKER_ID: 2
+    depends_on:
+      - zookeeper
+
+  kafka-3:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - '9094:9094'
+      - '29094:29094'
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-3:19094,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9094,DOCKER://host.docker.internal:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_BROKER_ID: 3
+    depends_on:
+      - zookeeper
+
+volumes:
+  pgdata:
+  redisdata:

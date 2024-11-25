@@ -1,0 +1,15 @@
+[build-system]
+requires = ['setuptools', 'setuptools-scm']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'default-app'
+authors = [
+	{name='notner', email= 'notner@notner.not'},
+]
+description = 'Default App Structure (PSQL, Kafka, Redis)'
+dynamic = ['version']
+
+
+[project.scripts]
+dapp-cli = 'defaultapp.cmd.cmd:main'

@@ -1,0 +1,8 @@
+CREATE DATABASE default_app_v1;
+CREATE DATABASE root;
+CREATE ROLE root LOGIN;
+
+CREATE TABLE log (
+	id INT PRIMARY KEY,
+	data VARCHAR(255)
+);
