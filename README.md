@@ -12,8 +12,8 @@ Tech:
 
 ## Developer Setup
 
-To setup dev environment run: `make dev-setup`
-This will create virtualenv and install requirements
+To setup dev environment run: `make dev-setup`.
+This will create virtualenv and install requirements.
 
 
 ## Testing (Fixtures)
@@ -21,7 +21,9 @@ This will create virtualenv and install requirements
 For testing we need to spin up the services we want to use (kafka, redis, psql, etc), to do this
 we have a docker-compose file in `./docker/docker-compose.yaml`.
 
+
 Start: `make start-fixtures`
+
 Stop: `make stop-fixtures`
 
 To run the tests:
