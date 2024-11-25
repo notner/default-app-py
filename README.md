@@ -1,4 +1,4 @@
-# Default App (Python)
+# Default WebApp (Python)
 
 Basic webapp structure using Python.
 
