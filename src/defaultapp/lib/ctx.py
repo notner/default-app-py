@@ -8,7 +8,7 @@ from sqlalchemy.orm import scoped_session
 
 from defaultapp.lib.cfg import AppCfg
 from defaultapp.lib.events import KafkaClient
-from defaultapp.lib.events import RedisClient
+from defaultapp.lib.redis_ import RedisClient
 
 
 class AppCtx(object):

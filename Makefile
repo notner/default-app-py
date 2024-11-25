@@ -26,7 +26,8 @@ clean:
 
 
 run-tests:
-	@.virtualenv/bin/pytest src/defaultapp/tests/
+	export PYTHONDONTWRITEBYTECODE=1
+	@.virtualenv/bin/pytest
 
 
 help:
