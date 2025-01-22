@@ -1,5 +1,7 @@
 import formencode
 import functools
+
+import flask
 from flask import Blueprint
 
 from defaultapp.web.backend.lib.auth import authn_decorator
@@ -30,6 +32,6 @@ def route(
     return decorator
 
 
-def register_blueprint(app):
+def register_blueprint(app: flask.app.Flask):
     # prefix doesnt do shit without uwsgi apparently
     app.register_blueprint(bp, prefix='/api')

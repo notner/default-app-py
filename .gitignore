@@ -1,4 +1,7 @@
 .virtualenv
 .mypy
 .pytest
+.vscode/
 __pycache__
+build
+src/default_app.egg-info

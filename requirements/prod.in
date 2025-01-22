@@ -6,3 +6,5 @@ formencode
 psycopg
 kafka-python
 redis
+tomli
+six

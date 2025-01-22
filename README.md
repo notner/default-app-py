@@ -7,6 +7,7 @@ Tech:
  * Flask
  * SQLAlchemy
  * PostreSQL
+ * MySQL
  * Kafka
  * Redis
 

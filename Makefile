@@ -2,15 +2,16 @@ default: help
 
 dev-setup:
 	@python3 -m venv .virtualenv/
+	@. .virtualenv/bin/activate
 	@pip install -r requirements/prod.in
 	@pip install -r requirements/dev.in
 	@pip install -e .
 
 start-fixtures:
-	cd docker && docker-compose up
+	cd docker && docker compose up
 
 stop-fixtures:
-	cd docker && docker-compose down --volumes
+	cd docker && docker compose down --volumes
 
 run-web:
 	@.virtualenv/bin/python src/defaultapp/web/server.py

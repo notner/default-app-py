@@ -1,4 +1,10 @@
 import json
+import sys
+
+# changes to kafka-python need for py3.12
+if sys.version_info >= (3, 12, 0):
+	import six
+	sys.modules['kafka.vendor.six.moves'] = six.moves
 
 from kafka import KafkaConsumer
 from kafka import KafkaProducer
