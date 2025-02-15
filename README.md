@@ -1,15 +1,21 @@
-# Default WebApp (Python)
+# Microservice DefaultApp (python)
 
-Basic webapp structure using Python.
+Versatile start point for building a highly-available, scalable micro-service project.
+```code
+Tech Stack:
+ * Python3 (Flask, SQLAlchemy)
+ * Databases:
+    - PostreSQL
+    - MySQL
+ * Events:
+    - Kafka
+ * Cache:
+    - Redis
+```
+## Design
 
-Tech:
- * Python
- * Flask
- * SQLAlchemy
- * PostreSQL
- * MySQL
- * Kafka
- * Redis
+![](docs/architecture.svg)
+
 
 ## Developer Setup
 
