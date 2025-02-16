@@ -8,7 +8,3 @@ def run_uwsgi(env: str):
 def run_flask(env: str):
     app = create_app(env)
     app.run(debug=True)
-
-
-if __name__ == '__main__':
-    run_flask('test')

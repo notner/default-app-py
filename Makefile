@@ -32,11 +32,10 @@ run-tests:
 
 
 help:
-	echo 'help needed?'
-
-	echo 'dev-setup'
-	echo 'run-fixtures'
-	echo 'run-tests'
-	echo 'pip-compile'
-	echo 'install-local version'
-	echo 'install-prod version'
+	@echo 'dev-setup'
+	@echo 'start-fixtures'
+	@echo 'stop-fixtures'
+	@echo 'run-tests'
+	@echo 'pip-compile'
+	@echo 'install-local version'
+	@echo 'install-prod version'
