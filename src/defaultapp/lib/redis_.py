@@ -1,4 +1,8 @@
+import logging
 import redis
+
+
+log = logging.getLogger(__name__)
 
 
 class RedisClient:
@@ -19,8 +23,13 @@ class RedisClient:
 		)
 		self._client = redis.Redis(connection_pool=pool)
 
-	def set(self, key, value):
-		return self._client.set(key, value)
+	def set(self, key: str, value: str, expire=None) -> bool:
+		is_set = self._client.set(key, value)
+		if expire:
+			exp = self._client.expire(name=key, time=expire)
+			if not exp:
+				log.warning('failed to expire key: {key}')
+		return is_set
 
 	def get(self, key):
 		return self._client.get(key)
