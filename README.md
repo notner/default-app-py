@@ -1,6 +1,6 @@
 # Microservice DefaultApp (python)
 
-Versatile start point for building a highly-available, scalable micro-service project.
+Versatile start point for building a highly-available, scalable micro-service project in python.
 ```code
 Tech Stack:
  * Python3 (Flask, SQLAlchemy)
@@ -11,27 +11,26 @@ Tech Stack:
     - Kafka
  * Cache:
     - Redis
+
+Integrations with:
+- elasticsearch
+- logstash
+- kibana
+- filebeat
+- metricbeat
 ```
+
+Warning
+    **THIS PROJECT IS CURRENTLY IN ALPHA:**
+
+    - This is a WIP and so some features might be broken.
+    - Backwards compatibility isnt garantueed.
+
+
 ## Design
 
 ![](docs/architecture.svg)
 
+## More Info
 
-## Developer Setup
-
-To setup dev environment run: `make dev-setup`.
-This will create virtualenv and install requirements.
-
-
-## Testing (Fixtures)
-
-For testing we need to spin up the services we want to use (kafka, redis, psql, etc), to do this
-we have a docker-compose file in `./docker/docker-compose.yaml`.
-
-
-Start: `make start-fixtures`
-
-Stop: `make stop-fixtures`
-
-To run the tests:
-`make run-tests`
+[Developer Docs](docs/developer.md)
