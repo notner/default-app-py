@@ -22,7 +22,7 @@ def route(
         authn = authn_decorator(perms=perms)(validate)
         wrapped_func = handle_request()(authn)
 
-        @functools.wraps(wrapped_func)
+        @functools.wraps(func)
         def wrapper(*args, **kwargs):
             return wrapped_func(*args, **kwargs)
 
